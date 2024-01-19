@@ -205,17 +205,18 @@ class plotModels():
             for j, t in enumerate(self.timeVec):
                 submovements_x[i][j], submovements_v[i][j] = submovement(duration,amplitude,sub[1],t)
 
-        plt.figure()
+        plt.figure(figsize=(8, 5))
         for i in range(n):
             plt.plot(self.timeVec,submovements_x[i][:])
         plt.xlabel('Time(s)')
         plt.ylabel('x(m)')
         plt.xlim([0, self.env.robot.D_high])
         plt.subplots_adjust(left=0.15, bottom=0.15)
+        plt.legend(['action(1)','action(2)','action(3)','action(4)'])
         plt.savefig(self.save_path+"/submovmentExample_position.png")
         plt.close(plt.gcf().number)
                 
-        plt.figure()
+        plt.figure(figsize=(8, 5))
         for i in range(n):
             plt.plot(self.timeVec,submovements_v[i][:])
         plt.xlim([0, self.env.robot.D_high])
@@ -225,16 +226,15 @@ class plotModels():
         plt.savefig(self.save_path+"/submovmentExample_velocity.png")
         plt.close(plt.gcf().number)        
 
-
 dateInput = '23-08-03'
 saveVideoBool = False
-# plotModels('f', dateInput,saveVideoBool=saveVideoBool) 
-# plotModels('x0', dateInput,saveVideoBool=saveVideoBool)
+plotModels('f', dateInput,saveVideoBool=saveVideoBool) 
+plotModels('x0', dateInput,saveVideoBool=saveVideoBool)
 plotModels('submovement', dateInput,saveVideoBool=saveVideoBool) 
 
-# plotModels('f', dateInput, classicalBool = True, saveVideoBool=saveVideoBool) 
-# plotModels('x0', dateInput, classicalBool = True,saveVideoBool=saveVideoBool)
-# subPlotObject = plotModels('submovement', dateInput, classicalBool = True,saveVideoBool=saveVideoBool)
-# subPlotObject.makeExampleSubmovementPlot()
+plotModels('f', dateInput, classicalBool = True, saveVideoBool=saveVideoBool) 
+plotModels('x0', dateInput, classicalBool = True,saveVideoBool=saveVideoBool)
+subPlotObject = plotModels('submovement', dateInput, classicalBool = True,saveVideoBool=saveVideoBool)
+subPlotObject.makeExampleSubmovementPlot()
 
 print('done')
